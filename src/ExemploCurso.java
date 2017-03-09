@@ -1,6 +1,9 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class ExemploCurso {
 	public static void main(String[] args) {
@@ -19,5 +22,15 @@ public class ExemploCurso {
 		   .filter(c -> c.getAlunos() > 50)
 		   .map(Curso::getAlunos)
 		   .forEach(System.out::println);
+		
+		cursos.stream()
+		   .mapToInt(Curso::getAlunos)
+		   .average();
+		
+		List<Curso> resultado = cursos.stream()
+				   .filter(c -> c.getAlunos() > 50)
+				   .collect(Collectors.toList());
+		   
+		   
 	}
 }
